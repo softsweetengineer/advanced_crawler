@@ -1,0 +1,18 @@
+package interfaces;
+
+import bean.Page;
+/**
+ * Crawler这个interface规约实现一个函数，getPage(),该函数负责将url对应的网页转化成Page类实例。
+ * 
+ * @author Tank
+ * @version 2018年4月9日
+ */
+public interface Crawler {
+/**
+ * 定义该函数的主要目标是得到url对应的原始源代码，后将原始结果封装为一个Page类。
+ * @param url
+ * @return 通过抓取网页html代码得到的原始Page实例
+ */
+	public Page getPage(String url);
+	
+}

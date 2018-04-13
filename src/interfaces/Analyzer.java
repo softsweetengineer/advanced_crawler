@@ -1,0 +1,18 @@
+package interfaces;
+
+import bean.Page;
+/**
+ * 
+ * @author Tank
+ * @version 2018年4月9日
+ * Analyzer 接口将要求程序实现一个函数，analyze(),该函数将会分析页面，并将分析结果打包进Page类中。
+ * 
+ */
+public interface Analyzer {
+	/**
+	 * 
+	 * @param p
+	 * @return 分析后的页面信息
+	 */
+	public Page analyze(Page p);
+}
