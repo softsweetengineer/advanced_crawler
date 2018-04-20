@@ -17,7 +17,7 @@ public class SingleTestDBC implements DataBase {
 		String base="http://acm.hdu.edu.cn/showproblem.php?pid=";
 		for(Integer i=1000;i<=1020;++i)
 		{
-			System.out.println(base+i.toString());
+
 			urls.add(base+i.toString());
 			
 		}
@@ -31,8 +31,6 @@ public class SingleTestDBC implements DataBase {
 		String ret=urls.get(0);
 		
 		urls.remove(0);
-		
-		System.out.println(urls.size());
 		return ret;
 	}
 	
