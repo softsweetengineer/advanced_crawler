@@ -1,6 +1,7 @@
 package control;
 
 import bean.Page;
+import crawler.Crawler_DEFAULT;
 import interfaces.Crawler;
 
 /**
@@ -13,29 +14,29 @@ import interfaces.Crawler;
 public class Crawler_30 implements Runnable {
 
 
-	public int EMPTY_DELAY=1000;
-	public int NORMAL_DELAY=100;
+	public int CRAWLER_EMPTY_DELAY=1000;
+	public int CRAWLER_NORMAL_DELAY=100;
 	public static String CRAWLER_NAME="crawler.Crawler_HOJ";
 	public static String DEFAULT_CRAWLER_NAME = "crawler.Crawler_DEFAULT";
 	
 	
-	public int getEMPTY_DELAY() {
-		return EMPTY_DELAY;
+	public int getCRAWLER_EMPTY_DELAY() {
+		return CRAWLER_EMPTY_DELAY;
 	}
 
 
-	public void setEMPTY_DELAY(int eMPTY_DELAY) {
-		EMPTY_DELAY = eMPTY_DELAY;
+	public void setCRAWLER_EMPTY_DELAY(int CRAWLER_EMPTY_DELAY) {
+		this.CRAWLER_EMPTY_DELAY = CRAWLER_EMPTY_DELAY;
 	}
 
 
-	public int getNORMAL_DELAY() {
-		return NORMAL_DELAY;
+	public int getCRAWLER_NORMAL_DELAY() {
+		return CRAWLER_NORMAL_DELAY;
 	}
 
 
-	public void setNORMAL_DELAY(int nORMAL_DELAY) {
-		NORMAL_DELAY = nORMAL_DELAY;
+	public void setCRAWLER_NORMAL_DELAY(int CRAWLER_NORMAL_DELAY) {
+		this.CRAWLER_NORMAL_DELAY = CRAWLER_NORMAL_DELAY;
 	}
 
 
@@ -49,13 +50,15 @@ public class Crawler_30 implements Runnable {
 	}
 
 
-	public static Crawler getCrawler(String className)
+	public static Crawler getCrawler(String className) 
 	{
 		Crawler ret = null;
 		try {
 			ret = (Crawler) Class.forName(className).newInstance();
 		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
-			return null;
+			
+			ret = new Crawler_DEFAULT();
+			return ret;
 		}
 		return ret;
 	}
@@ -71,7 +74,7 @@ public class Crawler_30 implements Runnable {
 			if(url == null)
 			{
 				try {
-					Thread.sleep(EMPTY_DELAY);
+					Thread.sleep(CRAWLER_EMPTY_DELAY);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -81,7 +84,7 @@ public class Crawler_30 implements Runnable {
 				Main.communication.putSource(crawler.getPage(url));
 			}
 			try {
-				Thread.sleep(NORMAL_DELAY);
+				Thread.sleep(CRAWLER_NORMAL_DELAY);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -101,7 +104,7 @@ public class Crawler_30 implements Runnable {
 			if(url == null)
 			{
 				try {
-					Thread.sleep(EMPTY_DELAY);
+					Thread.sleep(CRAWLER_EMPTY_DELAY);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -116,7 +119,7 @@ public class Crawler_30 implements Runnable {
 				Main.communication.putSource(tar);
 			}
 			try {
-				Thread.sleep(NORMAL_DELAY);
+				Thread.sleep(CRAWLER_NORMAL_DELAY);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

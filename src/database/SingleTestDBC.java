@@ -14,10 +14,12 @@ public class SingleTestDBC implements DataBase {
 	
 	public SingleTestDBC()
 	{
-		String base="http://acm.hnu.cn/online/?action=problem&type=show&id=";
-		for(Integer i=10000;i<=14092;++i)
+		String base="http://acm.hdu.edu.cn/showproblem.php?pid=";
+		for(Integer i=1000;i<=1020;++i)
 		{
+			System.out.println(base+i.toString());
 			urls.add(base+i.toString());
+			
 		}
 	}
 	
@@ -27,7 +29,10 @@ public class SingleTestDBC implements DataBase {
 		// TODO Auto-generated method stub
 		if(urls.isEmpty())return null;
 		String ret=urls.get(0);
+		
 		urls.remove(0);
+		
+		System.out.println(urls.size());
 		return ret;
 	}
 	

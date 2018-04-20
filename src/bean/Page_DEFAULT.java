@@ -3,6 +3,9 @@ package bean;
 public class Page_DEFAULT extends Page{
 
 	public Page_DEFAULT(){}
+	public Page_DEFAULT(Page p) {
+		super(p);
+	}
 	public Page_DEFAULT(String url,String source)
 	{
 		super(url,source);

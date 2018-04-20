@@ -184,6 +184,59 @@ public class MapReader {
 		}
 	}
 	
+	public static void readMap()
+	{
+		String address = "config.cfg";
+		Reader fileReader = null;
+		try {
+			fileReader = new FileReader(address);
+		} catch (FileNotFoundException e) {
+			System.out.println("文件不存在");
+			return ;
+		}
+		@SuppressWarnings("resource")
+		BufferedReader cin = new BufferedReader(fileReader);
+		String str = null;
+		Map<String, String> mapNow = null;
+		List<String> listNow = null;
+		while(true)
+		{
+			try {
+				str = cin.readLine();
+			} catch (IOException e) {
+				System.out.println("文件读取出错");
+				return;
+			}
+			if(str == null)break;
+			if(str.contains("CRAWLER_CONFIG:"))
+			{
+				mapNow = MapReader.crawlerMap;
+				listNow = MapReader.crawlerList;
+				System.out.println("读取ULR映射:");
+				continue;
+			}
+			if(str.contains("ANALYZER_CONFIG:"))
+			{
+				mapNow = MapReader.analyzerMap;
+				listNow = MapReader.analyzerList;
+				System.out.println("读取Analyzer映射:");
+				continue;
+			}
+			if(str.contains("PAGE_CONFIG:"))
+			{
+				mapNow = MapReader.pageMap;
+				listNow = MapReader.pageList;
+				System.out.println("读取page映射:");
+			}
+			if(mapNow == null|| listNow == null)continue;
+			String mapp[] = str.split("=");
+			if(mapp.length!=2)continue;
+			mapNow.put(mapp[0], mapp[1]);
+			listNow.add(mapp[0]);
+				System.out.println(mapp[0]+" : "+mapp[1]);	
+		}
+	}
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		readMap("src//config_test.cfg");

@@ -6,10 +6,25 @@ import interfaces.Analyzer;
 public class Analyzer_30 implements Runnable{
 
 	
-	public static int EMPTY_DELAY=10000;
-	public static int NORMAL_DELAY=100;
-	public static String NAME_OF_ANALYZER="analyzer.Analyzer_HOJ";
+	public static int ANALYZER_EMPTY_DELAY=10000;
+	public static int ANALYZER_NORMAL_DELAY=100;
+
 	public static String DEFAULT_ANALYZER_NAME="analyzer.Analyzer_DEFAULT";
+	
+	
+	public static void config()
+	{
+		String className = null;
+		Integer number = null;
+		
+		number = Config.getInteger("ANALYZER_EMPTY_DELAY");
+		if(number != null)ANALYZER_EMPTY_DELAY=number;
+		number = Config.getInteger("ANALYZER_NORMAL_DELAY");
+		if(number != null)ANALYZER_NORMAL_DELAY=number;
+
+		className = Config.getString("DEFAULT_ANALYZER_NAME");
+		DEFAULT_ANALYZER_NAME = className;
+	}
 	
 	public static Analyzer getAnalyzer(String className)
 	{
@@ -25,8 +40,9 @@ public class Analyzer_30 implements Runnable{
 
 	public void old_run() {
 		// TODO Auto-generated method stub
+		config();
 		Page now = null;
-		Analyzer analyzer = Analyzer_30.getAnalyzer(NAME_OF_ANALYZER);
+		Analyzer analyzer = Analyzer_30.getAnalyzer(DEFAULT_ANALYZER_NAME);
 		while(true)
 		{
 			
@@ -34,7 +50,7 @@ public class Analyzer_30 implements Runnable{
 			if(now == null) 
 			{
 				try {
-					Thread.sleep(EMPTY_DELAY);
+					Thread.sleep(ANALYZER_EMPTY_DELAY);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -45,7 +61,7 @@ public class Analyzer_30 implements Runnable{
 				Main.communication.putResult(tar);
 				
 				try {
-					Thread.sleep(NORMAL_DELAY);
+					Thread.sleep(ANALYZER_NORMAL_DELAY);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -68,7 +84,7 @@ public class Analyzer_30 implements Runnable{
 			if(now == null)
 			{
 				try {
-					Thread.sleep(EMPTY_DELAY);
+					Thread.sleep(ANALYZER_EMPTY_DELAY);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -83,7 +99,7 @@ public class Analyzer_30 implements Runnable{
 				Main.communication.putResult(tar);
 			}
 			try {
-				Thread.sleep(NORMAL_DELAY);
+				Thread.sleep(ANALYZER_NORMAL_DELAY);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

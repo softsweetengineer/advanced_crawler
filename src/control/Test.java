@@ -2,23 +2,28 @@ package control;
 
 import java.util.ArrayList;
 
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+import crawler.Crawler_DEFAULT;
+import interfaces.Crawler;
+import util.selenium.SeleniumSetting;
+
 public class Test {
 	public static void add(Integer n)
 	{
 		n++;
 	}
 	public static void main(String[] args) {
+		System.setProperty("webdriver.firefox.bin", SeleniumSetting.firfoxPath);
 		
-		ArrayList<Integer> arr=new ArrayList<Integer>(); 
-		arr.add(3);
-		arr.add(4);
-		arr.add(5);
-		for(int i=0;i<arr.size();++i)
-		{
-			add(arr.get(i));
-			System.out.println(arr.get(i));
-		}
+//		WebDriver web = new FirefoxDriver();
+//		web.get("http://www.runoob.com/java/java-multithreading.html");
+//		System.out.println(web.getPageSource());
 		
+		Crawler crawler = new Crawler_DEFAULT();
+		
+		System.out.println(crawler.getPage("http://www.runoob.com/java/java-multithreading.html").getSource());
 	}
 
 }

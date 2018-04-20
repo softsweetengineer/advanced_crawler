@@ -5,15 +5,29 @@ import interfaces.DataBase;
  * 
  * @author Tank
  * @version 2018年3月23日
- *  主要爬虫模块
+ *  主要url数据获取模块
  */
 public class Catcher_30 implements Runnable {
 
 	
-	public static int EMPTY_DELAY=100000;
-	public static int NORMAL_DELAY=100;
-	public  String DBC_NAME="database.SingleTestDBC";
+	public static int CATCHER_EMPTY_DELAY=100000;
+	public static int CATCHER_NORMAL_DELAY=100;
+	public static  String DBC_NAME="database.SingleTestDBC";
 	 
+	public static void Config()
+	{
+		String className = null;
+		Integer number = null;
+		number = Config.getInteger("CATCHER_EMPTY_DELAY");
+		if(number != null)CATCHER_EMPTY_DELAY = number;
+		number = Config.getInteger("CATCHER_NORMAL_DELAY");
+		if(number != null)CATCHER_NORMAL_DELAY=number;
+		className = Config.getString("DBC_NAME");
+		if(className != null)DBC_NAME=className;
+		
+		
+	}
+	
 	
 	public static DataBase getDBC(String className)
 	{
@@ -38,16 +52,16 @@ public class Catcher_30 implements Runnable {
 		{
 			if(url==null)
 				try {
-					Thread.sleep(EMPTY_DELAY);
+					Thread.sleep(CATCHER_EMPTY_DELAY);
 				} catch (InterruptedException e) {
 					
 					e.printStackTrace();
 				}
 			
 			else Main.communication.puturl(url);
-			
+			url = DBC.geturl();
 			try {
-				Thread.sleep(NORMAL_DELAY);
+				Thread.sleep(CATCHER_NORMAL_DELAY);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
