@@ -44,6 +44,7 @@ public class DataBase_DEFAULT implements DataBase{
 	public DataBase_DEFAULT()
 	{
 		config();
+		System.out.println("config_finish");
 	
 	}
 	
@@ -55,11 +56,11 @@ public class DataBase_DEFAULT implements DataBase{
 		DATABASE_ADDRESS = "jdbc:mysql://59.110.155.203:3306/crawler?useUnicode=true&characterEncoding=UTF-8";
 		Connection conn = JDBCUtils.connect(DATABASE_ADDRESS, DATABASE_USER_NAME, DATABASE_PASSWORD);
 		Statement state = conn.createStatement();
-//		ResultSet res = state.executeQuery("CALL GET_URL()");
-		state.execute("insert into urlList(pk_url,state) values('正大光明','1')");
+		ResultSet res = state.executeQuery("CALL GET_URL()");
+//		state.execute("insert into urlList(pk_url,state) values('正大光明','1')");
 		
-//		if(res.next())
-//		System.out.println(res.getString("URL"));
+		if(res.next())
+		System.out.println(res.getString("URL"));
 		
 	}
 
@@ -68,10 +69,22 @@ public class DataBase_DEFAULT implements DataBase{
 	public String geturl() {
 		// TODO Auto-generated method stub
 		Connection conn = connectionPool.pop();
+		if(conn == null)
+		{
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return null;
+		}
 		try {
 			while(conn.isClosed())conn = JDBCUtils.connect(DATABASE_ADDRESS, DATABASE_USER_NAME, DATABASE_PASSWORD);
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
+			System.out.println("conn closed");
+			connectionPool.push(conn);
 			return null;
 		}
 		Statement state = null;
@@ -79,6 +92,8 @@ public class DataBase_DEFAULT implements DataBase{
 			state = conn.createStatement();
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
+			System.out.println("statement error");
+			connectionPool.push(conn);
 			return null;
 		}
 		ResultSet res = null;
@@ -88,25 +103,46 @@ public class DataBase_DEFAULT implements DataBase{
 			// TODO Auto-generated catch block
 //			e.printStackTrace();
 			connectionPool.push(conn);
-			
+			System.out.println("function error");
 			return null;
 		}
+		connectionPool.push(conn);
+		String ret = null;
 		try {
-			return res.getString("URL");
+			if(res.next())
+			ret= res.getString("URL");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
+			System.out.println("nothing to return");
+			connectionPool.push(conn);
 			return null;
 		}
+		connectionPool.push(conn);
+		System.out.println(ret);
+		return ret;
 	}
 
 	@Override
 	public void save(String url, String source) {
 		// TODO Auto-generated method stub
 		Connection conn = connectionPool.pop();
+		if(conn == null)
+		{
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				connectionPool.push(conn);
+				e.printStackTrace();
+			}
+			connectionPool.push(conn);
+			return ;
+		}
 		try {
 			while(conn.isClosed())conn = JDBCUtils.connect(DATABASE_ADDRESS, DATABASE_USER_NAME, DATABASE_PASSWORD);
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
+			connectionPool.push(conn);
 			return ;
 		}
 		PreparedStatement  state = null;
@@ -114,26 +150,30 @@ public class DataBase_DEFAULT implements DataBase{
 			state = conn.prepareStatement("CALL SAVE_RESULT(?,?)");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
+			connectionPool.push(conn);
 			return ;
 		}
 		try {
 			state.setString(1,url);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
+			connectionPool.push(conn);
 			return ;
 		}
 		try {
 			state.setString(2, source);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
+			connectionPool.push(conn);
 			return ;
 		}
 		try {
 			state.executeQuery();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
+			connectionPool.push(conn);
 			return;
-		}
+		}connectionPool.push(conn);
 	}
 
 	@Override

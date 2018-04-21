@@ -57,7 +57,7 @@ public class Communicator_30 implements Communication{
 		// TODO Auto-generated method stub
 		if(results.isEmpty())return null;
 		Page ret=results.get(0);
-		sources.remove(0);
+		results.remove(0);
 		return ret;
 	}
 

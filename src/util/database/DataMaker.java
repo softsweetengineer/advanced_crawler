@@ -39,6 +39,7 @@ public class DataMaker {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		for(Integer i=1000;i<=6275;++i)
 		{
 			String BASE="http://acm.hdu.edu.cn/showproblem.php?pid=";

@@ -17,7 +17,7 @@ public class Catcher_30 implements Runnable {
 	/**
 	 * 使用配置文件中有的信息替换默认配置信息。
 	 */
-	public static void Config()
+	public static void config()
 	{
 		String className = null;
 		Integer number = null;
@@ -27,6 +27,7 @@ public class Catcher_30 implements Runnable {
 		if(number != null)CATCHER_NORMAL_DELAY=number;
 		className = Config.getString("DBC_NAME");
 		if(className != null)DBC_NAME=className;
+		System.out.println(className+"--------------DBC");
 	}
 	
 	
@@ -45,10 +46,12 @@ public class Catcher_30 implements Runnable {
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
+		config();
 		DataBase DBC = getDBC(DBC_NAME);
 		String url=DBC.geturl();
 		while(true)
 		{
+			System.out.println(url);
 			if(url==null)
 				try {
 					Thread.sleep(CATCHER_EMPTY_DELAY);
