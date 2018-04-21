@@ -10,6 +10,11 @@ import bean.Page;
  */
 public interface Analyzer {
 	/**
+	 * 用于表示是否需要运行config函数进行初始化
+	 */
+	static boolean needConfig = true;
+	
+	/**
 	 * @param p
 	 * @return 分析后的页面信息
 	 */

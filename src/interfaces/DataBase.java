@@ -34,5 +34,4 @@ public interface DataBase {
 	 */
 	public static void config() {
 	}
-	
 }
