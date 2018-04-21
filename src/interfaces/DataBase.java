@@ -15,12 +15,14 @@ public interface DataBase {
 	 * @return 一个String对象代表一个待抓取的url
 	 */
 	public String geturl();
+	
 	/**
 	 * 将一组处理后的信息重新存进数据库。
 	 * @param url
 	 * @param source
 	 */
 	public void save(String url,String source);
+	
 	/**
 	 * 接受一个Page类的实例，并将其储存在数据库中
 	 * @param p

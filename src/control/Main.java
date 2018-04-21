@@ -8,27 +8,43 @@ import util.selenium.SeleniumPool;
 import util.selenium.SeleniumSetting;
 
 /**
- * 
+ * main函数为整个爬虫项目的启动程序。
+ * 首先读取配置文件后将完成整个爬虫项目的初始化。后按照配置启动文件。
  * @author Tank
  * @version 2018年3月23日
- * 启动爬虫的入口，主要负责按照顺序启动若干线程
+ * 
  */
-
 public class Main {
 
 	static {System.out.println("loading main");}
-
+	//线程间通信类
 	public static Communication communication=new Communicator_30();
+	//Catcher线程数量
 	public static int NUMBER_OF_CATCHER=1;
+	//Crawler线程数量
 	public static int NUMBER_OF_CRAWLER=4;
+	//Analyzer线程数量
 	public static int NUMBER_OF_ANALYZER=1;
+	//Updater线程数量
 	public static int NUMBER_OF_UPDATER=1;
+	//Catcher实例名称
 	public static String NAME_OF_CATCHER="control.Catcher_30";
+	//Crawler实例名称
 	public static String NAME_OF_CRAWLER="control.Crawler_30";
+	//Analyzer实例名称
 	public static String NAME_OF_ANALYZER="control.Analyzer_30";
+	//Updater实例名称
+	public static String NAME_OF_UPDATER="control.Updater_30";
+	//SeleniumPool大小
 	public static int SELENIUM_POOL_SIZE=3;
+	//SeleniumPool实例
 	public static SeleniumPool seleniumPool = null;
 	
+	/**
+	 * 通过文件名得到应该启动的线程
+	 * @param className
+	 * @return
+	 */
 	public static Runnable getThread (String className)
 	{
 		Runnable ret = null;
@@ -40,8 +56,9 @@ public class Main {
 		}
 		return ret;
 	}
+	
 	/**
-	 * 从配置文件中读取配置信息。
+	 * 使用配置文件中有的信息替换默认配置信息。
 	 */
 	public static void config()
 	{
@@ -79,6 +96,7 @@ public class Main {
 		seleniumPool = new SeleniumPool(SELENIUM_POOL_SIZE);
 	}
 	
+	//主程序
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		init();
@@ -90,6 +108,9 @@ public class Main {
 			pool.execute(getThread(NAME_OF_CRAWLER));
 		for(int i=0;i<NUMBER_OF_ANALYZER;++i)
 			pool.execute(getThread(NAME_OF_ANALYZER));
+		for(int i=0;i<NUMBER_OF_UPDATER;++i)
+			pool.execute(getThread(NAME_OF_UPDATER));
+		
 		
 		while(true)
 		{

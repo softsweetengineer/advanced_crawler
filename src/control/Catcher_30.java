@@ -2,10 +2,10 @@ package control;
 
 import interfaces.DataBase;
 /**
- * 
+ * 主要url数据获取模块,负责多线程的从数Database实例中取URL信息。
  * @author Tank
  * @version 2018年3月23日
- *  主要url数据获取模块
+ * 
  */
 public class Catcher_30 implements Runnable {
 
@@ -24,8 +24,6 @@ public class Catcher_30 implements Runnable {
 		if(number != null)CATCHER_NORMAL_DELAY=number;
 		className = Config.getString("DBC_NAME");
 		if(className != null)DBC_NAME=className;
-		
-		
 	}
 	
 	
@@ -39,8 +37,6 @@ public class Catcher_30 implements Runnable {
 			return null;
 		}
 		return ret;
-		
-		
 	}
 	
 	@Override
