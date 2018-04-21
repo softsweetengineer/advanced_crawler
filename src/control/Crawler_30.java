@@ -14,39 +14,24 @@ import interfaces.Crawler;
 public class Crawler_30 implements Runnable {
 
 
-	public int CRAWLER_EMPTY_DELAY=1000;
-	public int CRAWLER_NORMAL_DELAY=100;
-	public static String CRAWLER_NAME="crawler.Crawler_HOJ";
+	public static int CRAWLER_EMPTY_DELAY=1000;
+	public static int CRAWLER_NORMAL_DELAY=100;
 	public static String DEFAULT_CRAWLER_NAME = "crawler.Crawler_DEFAULT";
 	
-	
-	public int getCRAWLER_EMPTY_DELAY() {
-		return CRAWLER_EMPTY_DELAY;
-	}
+	/**
+	 * 使用配置文件中有的信息替换默认配置信息。
+	 */
+	public static void Config()
+	{
+		String className = null;
+		Integer number = null;
+		number = Config.getInteger("CRAWLER_EMPTY_DELAY");
+		if(number != null)CRAWLER_EMPTY_DELAY = number;
+		number = Config.getInteger("CRAWLER_NORMAL_DELAY");
+		if(number != null)CRAWLER_NORMAL_DELAY=number;
+		className = Config.getString("DEFAULT_CRAWLER_NAME");
+		if(className != null)DEFAULT_CRAWLER_NAME=className;
 
-
-	public void setCRAWLER_EMPTY_DELAY(int CRAWLER_EMPTY_DELAY) {
-		this.CRAWLER_EMPTY_DELAY = CRAWLER_EMPTY_DELAY;
-	}
-
-
-	public int getCRAWLER_NORMAL_DELAY() {
-		return CRAWLER_NORMAL_DELAY;
-	}
-
-
-	public void setCRAWLER_NORMAL_DELAY(int CRAWLER_NORMAL_DELAY) {
-		this.CRAWLER_NORMAL_DELAY = CRAWLER_NORMAL_DELAY;
-	}
-
-
-	public static String getCRAWLER_NAME() {
-		return CRAWLER_NAME;
-	}
-
-
-	public static void setCRAWLER_NAME(String cRAWLER_NAME) {
-		CRAWLER_NAME = cRAWLER_NAME;
 	}
 
 
@@ -66,7 +51,7 @@ public class Crawler_30 implements Runnable {
 	
 	public void old_run() {
 		// TODO Auto-generated method stub
-		Crawler crawler= getCrawler(CRAWLER_NAME);
+		Crawler crawler= getCrawler(DEFAULT_CRAWLER_NAME);
 		String url = null;
 		while(true)
 		{

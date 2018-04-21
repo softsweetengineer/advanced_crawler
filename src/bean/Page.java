@@ -1,9 +1,18 @@
 package bean;
 
+
+/**
+ * 用于表示页面的对象，为绝对类，强制用户的页面对象继承Page。
+ * 默认包含String类型的url和source分别表示网页URL和网页源代码。
+ * @author Tank
+ * @version 2018年4月21日
+ */
 public abstract class Page {
 
-	public String url;
-	public String source;
+	
+	private String url;
+	private String source;
+	
 	public String getUrl() {
 		return url;
 	}

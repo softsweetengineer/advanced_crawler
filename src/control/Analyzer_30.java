@@ -11,7 +11,9 @@ public class Analyzer_30 implements Runnable{
 
 	public static String DEFAULT_ANALYZER_NAME="analyzer.Analyzer_DEFAULT";
 	
-	
+	/**
+	 * 使用配置文件中有的信息替换默认配置信息。
+	 */
 	public static void config()
 	{
 		String className = null;
@@ -26,6 +28,11 @@ public class Analyzer_30 implements Runnable{
 		DEFAULT_ANALYZER_NAME = className;
 	}
 	
+	/**
+	 * 通过类名获取Analyzer实例。
+	 * @param className
+	 * @return
+	 */
 	public static Analyzer getAnalyzer(String className)
 	{
 		Analyzer ret = null;
@@ -91,7 +98,7 @@ public class Analyzer_30 implements Runnable{
 				}
 			}else
 			{
-				String url = now.url;
+				String url = now.getUrl();
 				String className = MapReader.getAnalyzerName(url);
 				if(className == null) className = DEFAULT_ANALYZER_NAME;
 				analyzer = getAnalyzer(className);

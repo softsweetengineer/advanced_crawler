@@ -15,4 +15,9 @@ public interface Crawler {
  */
 	public Page getPage(String url);
 	
+	/**
+	 * 重写以提供从Config中读取配置的代码。
+	 */
+	public static void config() {
+	}
 }

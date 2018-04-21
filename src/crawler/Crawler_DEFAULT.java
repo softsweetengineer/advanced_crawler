@@ -57,7 +57,8 @@ public class Crawler_DEFAULT implements Crawler {
 		ret = new Page_DEFAULT(url,source);
 		return ret;
 	}
-	public  Page getPage(String url) {
+	
+	public Page getPage(String url) {
 		Page ret = null;
 		String source="";
 		WebDriver browser = Main.seleniumPool.pop();

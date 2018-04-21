@@ -54,4 +54,9 @@ public interface Communication {
 	 * @return result队列的尺寸
 	 */
 	public int resultSize();
+	
+	public static void config()
+	{
+		
+	}
 }

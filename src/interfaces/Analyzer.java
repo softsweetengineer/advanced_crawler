@@ -10,9 +10,15 @@ import bean.Page;
  */
 public interface Analyzer {
 	/**
-	 * 
 	 * @param p
 	 * @return 分析后的页面信息
 	 */
 	public Page analyze(Page p);
+	
+	/**
+	 * 重写以提供从Config中读取配置的代码。
+	 */
+	public static void config() {
+	}
+	
 }

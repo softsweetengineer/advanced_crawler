@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import bean.Page;
+import bean.Page_DEFAULT;
 import interfaces.DataBase;
 
 public class SingleTestDBC implements DataBase {
@@ -46,7 +47,8 @@ public class SingleTestDBC implements DataBase {
 	@Override
 	public void save(Page p) {
 		// TODO Auto-generated method stub
-		
+		p = (Page_DEFAULT)p;
+		result.put(p.getUrl(), p.getSource());
 	}
 
 }

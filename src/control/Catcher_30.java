@@ -13,7 +13,10 @@ public class Catcher_30 implements Runnable {
 	public static int CATCHER_EMPTY_DELAY=100000;
 	public static int CATCHER_NORMAL_DELAY=100;
 	public static  String DBC_NAME="database.SingleTestDBC";
-	 
+	
+	/**
+	 * 使用配置文件中有的信息替换默认配置信息。
+	 */
 	public static void Config()
 	{
 		String className = null;

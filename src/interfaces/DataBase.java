@@ -29,4 +29,10 @@ public interface DataBase {
 	 */
 	public void save(Page p);
 	
+	/**
+	 * 重写以提供从Config中读取配置的代码。
+	 */
+	public static void config() {
+	}
+	
 }
