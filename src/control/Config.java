@@ -83,8 +83,9 @@ public class Config {
 			}
 			if(flag)
 			{
-				String map[]=str.split("=");
+				String map[]=str.split(":=");
 				if(map.length!=2)continue;
+				System.out.println(map[0]+":="+map[1]);
 				if(isNumber(map[1]))mappInteger.put(map[0],new Integer(map[1]));
 				else mappString.put(map[0], map[1]);
 			}

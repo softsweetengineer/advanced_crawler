@@ -15,7 +15,7 @@ import java.sql.Statement;
  * @see 数据库操作的基本类工具，将会具有包括链接、增加、修改、查询、删除操作在内的静态方法。
  */
 public class JDBCUtils {
-	//private static Connection conn;
+	
 	/**
 	 * @see 用于链接数据库，不接受参数，从系统变量中读取相关参数。
 	 * @return 数据库链接后的实例

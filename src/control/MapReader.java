@@ -55,8 +55,8 @@ public class MapReader {
 				break;
 			}
 			if(str==null)break;
-			if(!str.contains("="))break;
-			String mapp[] = str.split("=");
+			if(!str.contains(":="))break;
+			String mapp[] = str.split(":=");
 			crawlerMap.put(mapp[0], mapp[1]);
 			crawlerList.add(mapp[0]);
 			System.out.println(mapp[0]+" : "+mapp[1]);
@@ -177,7 +177,8 @@ public class MapReader {
 				System.out.println("读取page映射:");
 			}
 			if(mapNow == null|| listNow == null)continue;
-			String mapp[] = str.split("=");
+			String mapp[] = str.split(":=");
+			if(mapp.length!=2)continue;
 			crawlerMap.put(mapp[0], mapp[1]);
 			crawlerList.add(mapp[0]);
 				System.out.println(mapp[0]+" : "+mapp[1]);	

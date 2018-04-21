@@ -18,7 +18,7 @@ public class SingleTestDBC implements DataBase {
 		String base="http://acm.hdu.edu.cn/showproblem.php?pid=";
 		for(Integer i=1000;i<=1020;++i)
 		{
-
+			System.out.println(i+" : "+urls.size());
 			urls.add(base+i.toString());
 			
 		}
