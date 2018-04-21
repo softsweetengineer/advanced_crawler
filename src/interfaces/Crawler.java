@@ -8,10 +8,7 @@ import bean.Page;
  * @version 2018年4月9日
  */
 public interface Crawler {
-	/**
-	 * 用于表示是否需要运行config函数进行初始化
-	 */
-	static boolean needConfig = true;
+
 	
 	/**
 	 * 定义该函数的主要目标是得到url对应的原始源代码，后将原始结果封装为一个Page类。

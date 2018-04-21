@@ -55,6 +55,8 @@ public class ConnectionPool {
 		}
 	}
 	
+
+	
 	public ConnectionPool(String address,String userName,String password,int size)
 	{
 		setSize(size);

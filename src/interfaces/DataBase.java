@@ -10,6 +10,7 @@ import bean.Page;
  */
 public interface DataBase {
 
+	
 	/**
 	 * 返回一个数据库中待抓取的url同时重置该url状态为待抓取
 	 * @return 一个String对象代表一个待抓取的url

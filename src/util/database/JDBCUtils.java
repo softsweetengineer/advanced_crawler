@@ -185,8 +185,9 @@ public class JDBCUtils {
 		 sta.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS);
 		
 		ResultSet rs= sta.getGeneratedKeys ();
-		rs.next();
+		if(rs.next())
 		return rs.getInt(1);
+		return -1;
 	//	 rs;
 	}
 	/**

@@ -7,10 +7,7 @@ import bean.Page;
  * @version 2018年4月9日
  */
 public interface Communication {
-	/**
-	 * 用于表示是否需要运行config函数进行初始化
-	 */
-	static boolean needConfig = true;
+
 	
 	/**
 	 * 从url队列中获取一个url，并将其从队列中移除。
