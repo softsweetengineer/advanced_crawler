@@ -47,7 +47,14 @@ public class Catcher_30 implements Runnable {
 	public void run() {
 		// TODO Auto-generated method stub
 		config();
-		DataBase DBC = getDBC(DBC_NAME);
+		
+//http://acm.hdu.edu.cn/showproblem.php?pid=1000		
+
+		for(Integer i = 1000;i<6448;++i) {
+			String url = "http://acm.hdu.edu.cn/showproblem.php?pid="+i.toString();
+			Main.communication.puturl(url);
+		}
+/*		DataBase DBC = getDBC(DBC_NAME);
 		String url=DBC.geturl();
 		while(true)
 		{
@@ -68,7 +75,7 @@ public class Catcher_30 implements Runnable {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}
+		}*/
 	}
 
 	public static void main(String[] args) {

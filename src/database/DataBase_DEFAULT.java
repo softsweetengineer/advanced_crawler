@@ -49,15 +49,11 @@ public class DataBase_DEFAULT implements DataBase{
 	}
 	
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
-		
-//		String sql = "begin; set @url = '233'; select @url := pk_url from urlList where state = 3 ; update urlList set state = 1 where pk_url = @url; select @url; commit;";
-		
+
 		DATABASE_ADDRESS = "jdbc:mysql://59.110.155.203:3306/crawler?useUnicode=true&characterEncoding=UTF-8";
 		Connection conn = JDBCUtils.connect(DATABASE_ADDRESS, DATABASE_USER_NAME, DATABASE_PASSWORD);
 		Statement state = conn.createStatement();
 		ResultSet res = state.executeQuery("CALL GET_URL()");
-//		state.execute("insert into urlList(pk_url,state) values('正大光明','1')");
 		
 		if(res.next())
 		System.out.println(res.getString("URL"));
